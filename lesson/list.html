@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Список дел</h1>
+    <input type="text" class="task-input" placeholder="Добавить задачу">
+    <button class="add-button">Добавить</button>
+    <ul class="task-list"></ul>
+
+    <script>
+        const taskInput = document.querySelector('.task-input');
+        const addButton = document.querySelector('.add-button');
+        const taskList = document.querySelector('.task-list');
+        
+        // Восстановление списка дел из локального хранилища при загрузке страницы
+        if (localStorage.getItem('tasks')) {
+            taskList.innerHTML = localStorage.getItem('tasks')
+        }
+
+        addButton.addEventListener('click', () => {
+            const taskDescroption = taskInput.value;
+            if (taskDescroption !== '') {
+                const listItem = document.createElement('li');
+                listItem.classList.add('task-item');
+                listItem.innerHTML = `
+                <span class="task-description">${taskDescroption}</span>
+                <button class="delete-button">Удалить</button>
+                `;
+                taskList.appendChild(listItem);
+                taskInput.value = '';
+
+                // Сохранение списка дел в локальное хранилище
+                localStorage.setItem('tasks', taskList.innerHTML);
+            }
+        });
+
+        taskList.addEventListener('click', (event) => {
+            if (event.target.classList.contains('delete-button')) {
+                const listItem = event.target.closest('li');
+                listItem.parentNode.removeChild(listItem);
+
+                // Обновление списка дел в локальном хранилище
+                localStorage.setItem('tasks', taskList.innerHTML);
+            }
+        })
+    </script>
+</body>
+</html>

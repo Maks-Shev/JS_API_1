@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="taskList">
+        <li>Задача 1 <button class="delete-button">Удалить</button> <button class="clone-button">Клонировать</button></li>
+        <li>Задача 2 <button class="delete-button">Удалить</button> <button class="clone-button">Клонировать</button></li>
+        <li>Задача 3 <button class="delete-button">Удалить</button> <button class="clone-button">Клонировать</button></li>
+    </ul>
+
+    <script>
+        const taskList = document.querySelector('#taskList');
+
+        taskList.addEventListener('click', (event) => {
+            if (event.target.classList.contains('delete-button')) {
+                const taskItem = event.target.closest('li');
+                taskItem.remove(); // Удаление задачи
+
+                // Сохранение списка задач в локальном хранилище
+                localStorage.setItem('taskList', taskList.innerHTML);
+            }
+
+            if (event.target.classList.contains('clone-button')) {
+                const taskItem = event.target.closest('li');
+                const clonedTaskItem = taskItem.cloneNode(true); // Клонирование задачи
+                taskItem.after(clonedTaskItem); // Вставка клонированной задачи после текущей задачи
+
+                // Сохранение списка задач в локальном хранилище
+                localStorage.setItem('taskList', taskList.innerHTML);
+            }    
+        });
+
+        // Восстановление списка задач из локального хранилища при загрузке страницы
+        if (localStorage.getItem('taskList')) {
+            taskList.innerHTML = localStorage.getItem('taskList');
+        }
+    </script>
+</body>
+</html>
