@@ -11,9 +11,11 @@
         <li>Задача 2 <button class="delete-button">Удалить</button> <button class="clone-button">Клонировать</button></li>
         <li>Задача 3 <button class="delete-button">Удалить</button> <button class="clone-button">Клонировать</button></li>
     </ul>
+    <button class="clear">Вернуться к начальному результату</button>
 
     <script>
         const taskList = document.querySelector('#taskList');
+        const clearEl = document.querySelector('.clear');
 
         taskList.addEventListener('click', (event) => {
             if (event.target.classList.contains('delete-button')) {
@@ -38,6 +40,11 @@
         if (localStorage.getItem('taskList')) {
             taskList.innerHTML = localStorage.getItem('taskList');
         }
+
+        clearEl.addEventListener('click', () => {
+            localStorage.clear();
+            alert('Перезагрузите страницу!')
+        });
     </script>
 </body>
 </html>
