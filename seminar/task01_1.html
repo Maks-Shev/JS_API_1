@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .confirm-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFFFFF;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            width: 300px;
+            display: none;
+        }
+        .confirm-dialog p {
+            margin-bottom: 20px;
+        }
+        .confirm-dialog .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .confirm-dialog button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .confirm-dialog .stay-button {
+            background-color: #007bff;
+            color: white;
+        }
+        .confirm-dialog .leave-button {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <a href="task01.html">Первая страница</a>
+    <a href="task01_1.html">Вторая страница</a>
+    <button class="backButton">Назад</button>
+    <button class="forwardButton">Вперед</button>
+
+    <h1>Закрытие страницы</h1>
+
+    <div class="confirm-dialog" id="confirmDialog">
+        <p>Вы уверены, что хотите закрыть страницу?</p>
+        <div class="button-container">
+            <button class="stay-button">Остаться</button>
+            <button class="leave-button">Выйти</button>
+        </div>
+    </div>
+
+    <script src="task01.js"></script>
+</body>
+</html>
